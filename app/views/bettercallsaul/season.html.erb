@@ -1,0 +1,7 @@
+<h1>Better Call Saul Temporada <%= @season %></h1>
+<% @actuall_episodes.each do |episode| %>
+    <a href="<%= bettercallsaul_episode_path(@season, episode["episode_id"]) %>"> <%= episode["title"] %></a>
+    <br>
+
+
+<% end %>

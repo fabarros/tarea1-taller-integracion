@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: qymit888
+  pool: 5
+
+production:
+  <<: *default
+  database: tarea1_production
+
+development:
+  <<: *default
+  database: tarea1_development
+
+test:
+  <<: *default
+  database: tarea1_test

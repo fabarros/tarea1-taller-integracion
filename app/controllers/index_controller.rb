@@ -9,12 +9,19 @@ class IndexController < ApplicationController
         redirect_to index_search_get_url 
     end
     def index_search_view
-        puts $query
         $query.gsub(/[.,-_;:"]/, '')
         $query.gsub!(" ", "+")
-        puts $query
-        @response = HTTP.get("https://tarea-1-breaking-bad.herokuapp.com/api/characters?name=#{$query}").body.to_s
-        @characters = JSON.parse(@response)
+        offset = 0
+        @characters = []
+        @response = HTTP.get("https://tarea-1-breaking-bad.herokuapp.com/api/characters?name=#{$query}&limit=10&offset=#{offset}").body.to_s
+        @characters_response = JSON.parse(@response)
+        @characters = @characters+@characters_response
+        while @characters_response.length() == 10
+            offset += 10
+            @response = HTTP.get("https://tarea-1-breaking-bad.herokuapp.com/api/characters?name=#{$query}&limit=10&offset=#{offset}").body.to_s
+            @characters_response = JSON.parse(@response)
+            @characters = @characters + @characters_response
+        end
         render "index/index_search"
     end
 end

@@ -10,6 +10,20 @@
   </head>
 
   <body>
+    
+    <%= form_with url: index_search_path, method: :patch do |form| %>
+      <%= form.label :query, "Buscar personaje: " %>
+      <%= form.text_field :query %>
+      <%= form.submit "Search" %>
+    <% end %> 
+
+    <br>
+    <br>
     <%= yield %>
+    <br>
+    <br>
+    <input type="button" value="PÁGINA ANTERIOR" onclick="history.back()">
+    <br>
+    <a href="<%= index_path %>"> VOLVER AL INICIO </a>
   </body>
 </html>

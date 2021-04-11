@@ -1,2 +1,33 @@
-<h1>Breakingbad#character</h1>
-<p>Find me in app/views/breakingbad/character.html.erb</p>
+<h1>Personaje de la Serie</h1>
+<img src="<%= @character[0]["img"] %>" width="300">
+<p> Nombre: <%= @character[0]["name"]  %> </p>
+<p> Apodo: <%= @character[0]["nickname"]  %> </p>
+<p> 
+    Ocupación: 
+    <% @character[0]["occupation"].each do |occupation| %>
+        <%= occupation %>. 
+    <% end %>
+</p>
+<p> Serie: <%= @character[0]["category"]  %> </p>
+<p> Estado: <%= @character[0]["status"]  %> </p>
+<p> Intérprete: <%= @character[0]["portrayed"]  %> </p>
+<p>
+    Temporadas en Breaking Bad: 
+    <% @character[0]["appearance"].each do |season| %>
+        <a href="<%= breakingbad_season_path(season) %>">Temporada <%= season %></a>
+    <% end %>
+</p>
+<p>
+    Temporadas en Better Call Saul:
+    <% @character[0]["better_call_saul_appearance"].each do |season| %>
+        <a href="<%= bettercallsaul_season_path(season) %>">Temporada <%= season %></a>
+    <% end %>
+</p>
+<div>
+    Citas: 
+    <% @quotes.each do |quote| %>
+        <p> " <%= quote["quote"] %> " <p>
+        <p> Lo dijo en: <%= quote["series"] %> <p>
+        <br>
+    <% end %>
+</div>

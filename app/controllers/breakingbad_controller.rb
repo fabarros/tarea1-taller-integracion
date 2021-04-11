@@ -19,5 +19,10 @@ class BreakingbadController < ApplicationController
   end
 
   def character
+    name = params[:name].gsub("_", "+")
+    @response = HTTP.get("https://tarea-1-breaking-bad.herokuapp.com/api/characters?name=#{name}").body.to_s
+    @character = JSON.parse(@response)
+    @response_quote = HTTP.get("https://tarea-1-breaking-bad.herokuapp.com/api/quote?author=#{name}").body.to_s
+    @quotes = JSON.parse(@response_quote)
   end
 end

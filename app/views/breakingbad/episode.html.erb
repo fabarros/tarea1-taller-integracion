@@ -1,2 +1,11 @@
-<h1>Breakingbad#episode</h1>
-<p> <%= @episode[0]["title"] %> </p>
+<h1>Episodio de Breaking Bad</h1>
+<p> Nombre del episodio: <%= @episode[0]["title"] %> </p>
+<p> Temporada: <%= @episode[0]["season"] %> </p>
+<p> Número del episodio: <%= @episode[0]["episode"] %> </p>
+<p> Fecha de estreno: <%= @episode[0]["air_date"] %> </p>
+<p> Personajes: 
+    <% @episode[0]["characters"].each do |character| %>
+        <% name = character.gsub(" ", "_").gsub(".", "") %>
+        <a href="<%= breakingbad_character_path(name) %>"> <%= character %></a>
+    <% end %>
+</p>

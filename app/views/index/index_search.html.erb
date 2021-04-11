@@ -1,0 +1,5 @@
+<% @characters.each do |character| %>
+<% name = character["name"].gsub(" ", "_").gsub(".", "") %>
+<a href="<%= breakingbad_character_path(name) %>"> <%= character["name"] %></a>
+<br>
+<% end %>
